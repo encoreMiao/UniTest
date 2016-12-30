@@ -6,15 +6,16 @@
 //  Copyright © 2016年 sxh. All rights reserved.
 //
 
-#import "RegMsg.h"
+#import "ReqMsg.h"
+#import "NSString+URL.h"
 
-@interface RegMsg()
+@interface ReqMsg()
 @property (nonatomic, assign) NSInteger msgId;
 @property (nonatomic, strong) NSURLSessionTask *task;
 @end
 
 
-@implementation RegMsg
+@implementation ReqMsg
 - (id)init{
     if (self = [super init]) {
         _msgId = 0;
@@ -38,13 +39,15 @@
 {
     static NSInteger mID = 0;
     
-    RegMsg *msg = [[RegMsg alloc]init];
+    ReqMsg *msg = [[ReqMsg alloc]init];
     msg.msgId = ++mID;//每一次创建msgID都会加1
     msg.url = url;
     msg.parameters = param;
     msg.headerFields = headerFields;
     msg.style = style;
     msg.object = object;
+    
+    return msg;
     
 }
 
@@ -84,7 +87,8 @@
 
 - (NSString *)getRequestUrl
 {
-    NSString *reqUrl = [NSString ];
+    NSString *reqUrl = [NSString encodeUrlString:_url fromDictionary:_parameters];
+    return reqUrl;
 }
 - (void)displayRequestUrl
 {

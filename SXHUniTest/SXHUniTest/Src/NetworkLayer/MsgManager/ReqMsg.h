@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, ReqStyle)
     SendNewReqStyle,//保留当前请求，取消已发请求（同：条件搜索）
 };
 
-@interface RegMsg : NSObject
+@interface ReqMsg : NSObject
 @property (nonatomic, assign) ReqStyle style;
 @property (nonatomic, strong) NSString *url;//baseURL
 @property (nonatomic, strong) NSDictionary *parameters;//URL参数
